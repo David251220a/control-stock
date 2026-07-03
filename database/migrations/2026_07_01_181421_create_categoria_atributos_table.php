@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('categoria_atributos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('categoria_id')->constrained();
+            $table->foreignId('atributo_id')->constrained();
+            $table->boolean('obligatorio')->default(false);
+            $table->integer('orden')->default(0);
+            $table->foreignId('estado_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('usuario_modificacion')->nullable();
             $table->timestamps();
         });
     }

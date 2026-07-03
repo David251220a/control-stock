@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('codigo');
             $table->string('descripcion', 250);
-            $$table->foreignId('categoria_padre_id')->nullable()->constrained('categorias');
+            $table->foreignId('categoria_padre_id')->nullable()->constrained('categorias');
             $table->integer('orden')->default(0);
-            $table->foreignId('estado_id');
+            $table->foreignId('estado_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('usuario_modificacion')->nullable();
             $table->timestamps();

@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('producto_variantes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('producto_id')->constrained();
+            $table->string('codigo', 30)->unique();
+            $table->string('codigo_barra')->nullable()->unique();
+            $table->decimal('precio_compra', 18, 2)->default(0);
+            $table->decimal('precio_venta', 18, 2)->default(0);
+            $table->integer('stock_minimo')->default(0);
+            $table->decimal('peso', 10, 2)->nullable();
+            $table->foreignId('estado_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('usuario_modificacion')->nullable();
             $table->timestamps();
         });
     }
