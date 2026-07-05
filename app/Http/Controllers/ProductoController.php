@@ -10,4 +10,9 @@ class ProductoController extends Controller
     {
         return view('producto.index');
     }
+
+    public function carrito()
+    {
+        return view('producto.carrito');
+    }
 }

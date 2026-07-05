@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,11 @@ Route::group([
 
     Route::get('/categorias', [CategoriaController::class, 'index'])->name('categoria.index');
     Route::get('/productos', [ProductoController::class, 'index'])->name('producto.index');
+    Route::get('/carrito-compra', [ProductoController::class, 'carrito'])->name('producto.carrito');
+
+    Route::get('/factura', [FacturaController::class, 'index'])->name('factura.index');
+    Route::get('/factura/{factura}/ver', [FacturaController::class, 'show'])->name('factura.show');
+    Route::get('/factura/{factura}/factura', [FacturaController::class, 'factura'])->name('factura.factura');
 
 });
 

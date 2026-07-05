@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ciudad;
+use App\Models\Departamento;
+use App\Models\Distrito;
 use App\Models\Estado;
+use App\Models\Secuencia;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -35,8 +39,39 @@ class DatabaseSeeder extends Seeder
             'descripcion' => 'INACTIVO'
         ]);
 
+        Departamento::create([
+            'descripcion' => 'CAPITAL'
+        ]);
+
+        Distrito::create([
+            'departamento_id' => 1,
+            'descripcion' => 'ASUNCION (DISTRITO)'
+        ]);
+
+        Ciudad::create([
+            'distrito_id' => 1,
+            'descripcion' => 'ASUNCION (DISTRITO)'
+        ]);
+
+        Secuencia::create([
+            'secuencia' => 0
+        ]);
+
         $this->call([
             MarcaSeeder::class,
+            TipoTransaccionSeeder::class,
+            EntidadSeeder::class,
+            ActividadEconomicaSeeder::class,
+            FormaCobroSeeder::class,
+            BancoSeeder::class,
+            TipoDocumentoSeeder::class,
+            EstablecimientoSeeder::class,
+            NumeracionSeeder::class,
+            TipoPersonaSeeder::class,
+            SexoSeeder::class,
+            PersonaSeeder::class
         ]);
+
+
     }
 }
