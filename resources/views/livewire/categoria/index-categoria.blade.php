@@ -21,13 +21,68 @@
                         <i class="fas fa-plus"></i>
                         Nueva Categoría
                     </button>
-                    @include('categoria.crear')
                 </div>
 
             </div>
         </div>
 
         <div class="widget-content widget-content-area">
+
+            <div class="row mb-3">
+
+                <div class="col-md-12">
+
+                    <nav aria-label="breadcrumb">
+
+                        <ol class="breadcrumb mb-0">
+
+                            <li class="breadcrumb-item">
+
+                                <a href="#"
+                                wire:click.prevent="volverInicio">
+
+                                    <i class="fas fa-home"></i>
+
+                                    Categorías
+
+                                </a>
+
+                            </li>
+
+                            @foreach($rutaCategorias as $indice => $ruta)
+
+                                @if($loop->last)
+
+                                    <li class="breadcrumb-item active">
+
+                                        {{ $ruta['descripcion'] }}
+
+                                    </li>
+
+                                @else
+
+                                    <li class="breadcrumb-item">
+
+                                        <a href="#"
+                                        wire:click.prevent="volverRuta({{ $indice }})">
+
+                                            {{ $ruta['descripcion'] }}
+
+                                        </a>
+
+                                    </li>
+
+                                @endif
+
+                            @endforeach
+
+                        </ol>
+
+                    </nav>
+
+                </div>
+
+            </div>
 
             <div class="row mb-4">
 
@@ -41,12 +96,11 @@
                             </span>
                         </div>
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Buscar categoría..."
-                            wire:model.debounce.500ms="buscar">
+                        <input type="text" class="form-control" placeholder="Buscar producto..." wire:model.defer="buscar">
 
+                        <button type="button" class="btn btn-primary" wire:click="buscarCategoria">
+                            Buscar
+                        </button>
                     </div>
 
                 </div>
@@ -55,49 +109,76 @@
 
             <div class="row mt-4">
 
-                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                @forelse($categorias as $categoria)
 
-                    <div class="categoria-card"
-                        wire:click="abrirCategoria(1)">
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
 
-                        <button type="button"
-                                class="btn-editar-cat"
-                                wire:click.stop="editarCategoria(1)"
-                                title="Editar categoría">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <div class="categoria-card" wire:click="abrirCategoria({{ $categoria->id }})">
 
-                        <div class="categoria-badge">
-                            5 Hijos
-                        </div>
+                            <button type="button" class="btn-editar-cat" wire:click.stop="editarCategoria({{ $categoria->id }})" title="Editar categoría">
+                                <i class="fas fa-edit"></i>
+                            </button>
 
-                        <div class="categoria-img">
-                            <img src="{{ Storage::url('iconos/juguetes.jpg') }}" alt="Juguetes">
-                        </div>
-
-                        <div class="categoria-body">
-                            <h4>Juguetes</h4>
-
-                            <div class="categoria-info">
-                                <div>
-                                    <i class="fas fa-box"></i>
-                                    120 Productos
+                            @if($categoria->hijos_count > 0)
+                                <div class="categoria-badge">
+                                    {{ $categoria->hijos_count }} Hijos
                                 </div>
+                            @endif
 
-                                <div>
-                                    <i class="fas fa-folder-open"></i>
-                                    5 Subcategorías
-                                </div>
+                            <div class="categoria-img">
+                                <img src="{{ $categoria->imagen ? Storage::url($categoria->imagen) : Storage::url('categorias/categoria.jpg') }}" alt="{{ $categoria->descripcion }}">
                             </div>
+
+                            <div class="categoria-body">
+
+                                <h4>{{ $categoria->descripcion }}</h4>
+
+                                <div class="categoria-info d-flex justify-content-between mt-3">
+
+                                    <div title="Productos">
+                                        <i class="fas fa-box-open text-warning"></i>
+                                        <strong>{{ number_format($categoria->productos_count,0,',','.') }}</strong>
+                                    </div>
+
+                                    <div title="Subcategorías">
+                                        <i class="fas fa-folder-open text-info"></i>
+                                        <strong>{{ number_format($categoria->hijos_count,0,',','.') }}</strong>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
+                @empty
+
+                    <div class="col-12">
+
+                        <div class="alert alert-warning text-center mb-0">
+
+                            <i class="fas fa-exclamation-circle"></i>
+                            No se encontraron categorías.
+
+                        </div>
+
+                    </div>
+
+                @endforelse
 
             </div>
+
+            @if($categorias->hasPages())
+                <div class="d-flex justify-content-left mt-3">
+                    {{ $categorias->links() }}
+                </div>
+            @endif
 
         </div>
 
     </div>
+    @include('categoria.crear')
+    @include('categoria.editar')
 </div>

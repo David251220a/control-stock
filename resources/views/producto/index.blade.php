@@ -3,6 +3,7 @@
 @section('styles')
     <link href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('plugins/sweetalerts/sweetalert.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
     <style>
         .categoria-card {
             border: none;
@@ -68,17 +69,33 @@
         }
 
         .categoria-body {
-            padding: 20px;
+            padding: 24px 20px 20px 20px;
+        }
+
+        .categoria-card.variante-card .categoria-body h4 {
+            padding-left: 0;
+            padding-right: 0;
+            width: 100%;
+            font-size: 22px;
+            line-height: 1.15;
+            word-break: normal;
+            overflow-wrap: break-word;
         }
 
         .categoria-body h4 {
             color: #fff;
             font-weight: 700;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+            padding-left: 38px;
+            padding-right: 105px;
+            font-size: 22px;
+            line-height: 1.2;
+            word-break: break-word;
         }
 
-        .categoria-info{
-            font-size:15px;
+        .categoria-info div{
+            flex:1;
+            margin:0 4px;
         }
 
         .categoria-info div{
@@ -109,20 +126,25 @@
             margin-right:6px;
 
         }
+
+        .btn-editar-cat {
+            top: 18px;
+            left: 16px;
+        }
     </style>
 
 @endsection
 
 @section('content')
 
-    @livewire('categoria.index-categoria')
+    @livewire('producto.index-producto')
 
 @endsection
 
 
 @section('js')
-    <script src="{{asset('assets/js/libs/jquery-3.1.1.min.js')}}"></script>
     <script src="{{asset('plugins/sweetalerts/sweetalert2.min.js')}}"></script>
     <script src="{{asset('plugins/sweetalerts/custom-sweetalert.js')}}"></script>
-    <script src="{{ asset('js/categoria.js') }}"></script>
+    <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('js/producto.js') }}"></script>
 @endsection

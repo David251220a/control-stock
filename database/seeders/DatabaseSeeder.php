@@ -34,5 +34,9 @@ class DatabaseSeeder extends Seeder
         Estado::create([
             'descripcion' => 'INACTIVO'
         ]);
+
+        $this->call([
+            MarcaSeeder::class,
+        ]);
     }
 }

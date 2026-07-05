@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('descripcion', 250);
             $table->foreignId('categoria_padre_id')->nullable()->constrained('categorias');
             $table->integer('orden')->default(0);
+            $table->string('imagen')->nullable();
             $table->foreignId('estado_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('usuario_modificacion')->nullable();
