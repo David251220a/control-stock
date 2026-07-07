@@ -4,12 +4,14 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LimpiarController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/limpiar', [LimpiarController::class, 'limpiar'])->name('limpiar');
 
 Auth::routes();
 
