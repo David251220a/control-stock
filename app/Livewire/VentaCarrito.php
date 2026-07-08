@@ -51,6 +51,8 @@ class VentaCarrito extends Component
     public $establecimiento;
     public $timbrado;
 
+    public $codigo_barra;
+
     public function mount()
     {
         $this->carrito = session()->get('carrito_venta', []);
@@ -528,6 +530,28 @@ class VentaCarrito extends Component
     public function seleccionarMonto($monto)
     {
         $this->monto_recibido = $monto;
+    }
+
+    public function buscarPorCodigoBarra()
+    {
+        $codigo = trim($this->codigo_barra);
+        $this->codigo_barra = '';
+
+        if ($codigo == '') {
+            return;
+        }
+
+        $variante = ProductoVariante::where('codigo_barra', $codigo)
+        ->where('estado_id', 1)
+        ->first();
+
+        if (!$variante) {
+            $this->dispatch('mensaje_error', 'Código de barra no encontrado.');
+            return;
+        }
+
+        $this->agregarVariante($variante->id);
+
     }
 
 }

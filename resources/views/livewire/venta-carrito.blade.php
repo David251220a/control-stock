@@ -19,6 +19,21 @@
 
         <div class="widget-content widget-content-area">
 
+                <div class="card mb-3">
+                    <div class="card-body">
+
+                        <label>Código de barra</label>
+
+                        <input id="codigoBarra"
+                        type="text"
+                        wire:model="codigo_barra"
+                        wire:keydown.enter="buscarPorCodigoBarra"
+                        class="form-control"
+                        placeholder="Escanee o escriba el código de barra"
+                        autofocus>
+
+                    </div>
+                </div>
             <div class="row">
 
                 <div class="col-md-8">
@@ -163,8 +178,8 @@
 
     </div>
 
-    @include('producto.crear_cliente')ç
-    @include('producto.cobro');
+    @include('producto.crear_cliente')
+    @include('producto.cobro')
 </div>
 
 
