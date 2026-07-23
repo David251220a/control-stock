@@ -140,10 +140,10 @@
                                         <strong>{{ number_format($categoria->productos_count,0,',','.') }}</strong>
                                     </div>
 
-                                    <div title="Subcategorías">
+                                    {{-- <div title="Subcategorías">
                                         <i class="fas fa-folder-open text-info"></i>
                                         <strong>{{ number_format($categoria->hijos_count,0,',','.') }}</strong>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
 

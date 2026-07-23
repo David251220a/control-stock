@@ -119,9 +119,25 @@
                             </div>
 
                         @else
+                            @php
+                                if ($item->stock_actual <= 0) {
+                                    $claseStock = 'stock-agotado';
+                                    $textoStock = 'SIN STOCK';
+                                    $iconoStock = 'fas fa-times-circle';
+                                } elseif ($item->stock_actual <= $item->stock_minimo) {
+                                    $claseStock = 'stock-bajo';
+                                    $textoStock = 'STOCK BAJO: ' . number_format($item->stock_actual, 0, ',', '.');
+                                    $iconoStock = 'fas fa-exclamation-triangle';
+                                } else {
+                                    $claseStock = 'stock-disponible';
+                                    $textoStock = 'STOCK: ' . number_format($item->stock_actual, 0, ',', '.');
+                                    $iconoStock = 'fas fa-check-circle';
+                                }
+                            @endphp
 
                             {{-- CARD VARIANTE --}}
-                            <div class="categoria-card variante-card">
+                            {{-- <div class="categoria-card variante-card"> --}}
+                            <div class="categoria-card variante-card {{ $claseStock }}">
 
                                 <button type="button" class="btn-editar-cat" wire:click.stop="editarVariante({{ $item->id }})" title="Editar variante">
                                     <i class="fas fa-edit"></i>

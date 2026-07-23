@@ -29,5 +29,7 @@ Route::group([
     Route::get('/factura/{factura}/ver', [FacturaController::class, 'show'])->name('factura.show');
     Route::get('/factura/{factura}/factura', [FacturaController::class, 'factura'])->name('factura.factura');
 
+    Route::get('/productos-listado', [ProductoController::class, 'listado'])->name('producto.listado');
+
 });
 

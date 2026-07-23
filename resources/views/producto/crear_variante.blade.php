@@ -51,7 +51,11 @@
 
                     <div class="form-group col-md-6">
                         <label>Stock inicial</label>
-                        <input type="number" wire:model.defer="stock_actual" class="form-control" min="0">
+                        <input type="number" wire:model.defer="stock_actual" class="form-control" min="0"
+                            @if ($tipo_variante == 2)
+                                readonly
+                            @endif
+                        >
                     </div>
 
                     <div class="form-group col-md-6">

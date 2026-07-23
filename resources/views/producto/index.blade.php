@@ -131,6 +131,49 @@
             top: 18px;
             left: 16px;
         }
+
+        /* Stock disponible */
+        .categoria-card.variante-card.stock-disponible {
+            background: linear-gradient(135deg, #047857, #10b981);
+            border: 2px solid #34d399;
+        }
+
+        /* Stock igual o inferior al mínimo */
+        .categoria-card.variante-card.stock-bajo {
+            background: linear-gradient(135deg, #b45309, #f59e0b);
+            border: 2px solid #fbbf24;
+        }
+
+        /* Stock agotado */
+        .categoria-card.variante-card.stock-agotado {
+            background: linear-gradient(135deg, #991b1b, #dc2626);
+            border: 2px solid #f87171;
+        }
+
+        /* Badge correspondiente al estado del stock */
+        .variante-card.stock-disponible .stock-badge {
+            background: #065f46;
+        }
+
+        .variante-card.stock-bajo .stock-badge {
+            background: #92400e;
+        }
+
+        .variante-card.stock-agotado .stock-badge {
+            background: #7f1d1d;
+            animation: stock-agotado-alerta 1.8s infinite;
+        }
+
+        @keyframes stock-agotado-alerta {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.55);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(248, 113, 113, 0);
+            }
+        }
     </style>
 
 @endsection

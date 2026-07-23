@@ -449,6 +449,7 @@ class IndexProducto extends Component
         $this->producto_id = $variante->producto_id;
         $this->marca_variante_id = $variante->marca_id;
         $this->variante_descripcion = $variante->descripcion;
+        $this->codigo_barra = $variante->codigo_barra;
         $this->titulo_variante = 'Editar Variante';
         $this->tipo_variante = 2;
         $this->dispatch('abrir_modal', id: 'modal_variante');

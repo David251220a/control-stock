@@ -15,4 +15,9 @@ class ProductoController extends Controller
     {
         return view('producto.carrito');
     }
+
+    public function listado()
+    {
+        return view('producto.listado');
+    }
 }

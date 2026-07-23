@@ -14,7 +14,7 @@ class TipoDocumentoSeeder extends Seeder
     public function run(): void
     {
         $doc = ['Factura electrónica', 'Factura electrónica de exportación (Futuro)', 'Factura electrónica de importación (Futuro)', 'Autofactura electrónica'
-        , 'Nota de crédito electrónica', 'Nota de débito electrónica', 'Nota de remisión electrónica', 'Comprobante de retención electrónico (Futuro)'];
+        , 'Nota de crédito electrónica', 'Nota de débito electrónica', 'Nota de remisión electrónica', 'Comprobante de retención electrónico (Futuro)', 'Recibo Dinero'];
         foreach ($doc as $item) {
             TipoDocumento::firstOrCreate([
                 'descripcion' => $item
